@@ -1,0 +1,201 @@
+@font-face {
+  font-family: 'PixelHallfeticaJP12P-Bold';
+  src: url('/assets/impact/page/css/fonts/PixelHallfeticaJP12P-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'PixelHallfeticaJP10P-Regular';
+  src: url('/assets/impact/page/css/fonts/PixelHallfeticaJP10P-Regular.ttf')
+}
+
+body {
+  cursor: url('/assets/game/page/img/cursor-2.png'), auto;
+  margin: 0px;
+  padding: 0px;
+  background: url('../img/background.png') no-repeat;
+  background-size: 410px,214px;
+  image-rendering: pixelated;
+  color:white;
+  overflow:hidden;
+}
+
+.page-container{
+  display:grid;
+  grid-template-columns: repeat(2,1fr);
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  width: 256px;
+  height: 214px;
+}
+
+.main-tracker-box {
+  background: url('../img/tracker.png') no-repeat;
+  width: 172px;
+  height: 214px;
+  margin-right: 5px;
+  padding-top: 5px;
+}
+
+.icon-category {
+  background-image: url('../img/trade-types.png');
+  background-repeat: no-repeat;
+  background-size: 256px 24px;
+  width: 28px;
+  height: 18px;
+}
+
+.icon-category-0 {
+  background-position: 0px 0px;
+}
+.icon-category-1 {
+  background-position: -56px 0px;
+}
+.icon-category-2 {
+  background-position: -84px 0px;
+}
+.icon-category-3 {
+  background-position: -112px 0px;
+}
+
+.shade-box {
+  background-image: url("../img/shadeBase.png");
+  position:relative;
+  background-size: 24px 24px;
+  z-index:100;
+  width: 24px;
+  height: 24px;
+}
+
+.tracker-box {
+  margin-bottom:8px;
+}
+
+.tracker-info{
+  color: white;
+  font-family: 'PixelHallfeticaJP12P-Bold';
+  font-size: 14px;
+  margin-top:2px;
+  margin-left: 32px;
+  width:130px;
+  text-transform: uppercase;
+}
+
+.tracker-info-box {
+  position: relative;
+  left: 2px;
+  top: 4px;
+  padding-left: 24px;
+  display: inline-block;
+}
+
+.tracker-info-box > span {
+  position: absolute;
+  user-select: none;
+  left: 4px;
+  top: 6px;
+}
+
+
+.shade-grid {
+  margin-top:24px;
+  margin-left:15px;
+  display:grid;
+  grid-template-columns: repeat(3,32px);
+  grid-template-rows: repeat(3,32px);
+}
+
+.icon-shade {
+  position:absolute;
+  top: 0px;
+  z-index:200;
+  background-image: url('../img/shades.png');
+  background-repeat: no-repeat;
+  background-size: 216px 48px;
+  width: 24px;
+  height: 24px;
+}
+
+.icon-shade-0-0 {
+  background-position: 0px 0px;
+}
+.icon-shade-0-1 {
+  background-position: 0px -24px;
+}
+
+.icon-shade-1-0 {
+  background-position: -24px 0px;
+}
+.icon-shade-1-1 {
+  background-position: -24px -24px;
+}
+
+.icon-shade-2-0 {
+  background-position: -48px 0px;
+}
+.icon-shade-2-1 {
+  background-position: -48px -24px;
+}
+
+.icon-shade-3-0 {
+  background-position: -72px 0px;
+}
+.icon-shade-3-1 {
+  background-position: -72px -24px;
+}
+
+.icon-shade-4-0 {
+  background-position: -96px 0px;
+}
+.icon-shade-4-1 {
+  background-position: -96px -24px;
+}
+
+.icon-shade-5-0 {
+  background-position: -120px 0px;
+}
+.icon-shade-5-1 {
+  background-position: -120px -24px;
+}
+
+.icon-shade-6-0 {
+  background-position: -144px 0px;
+}
+.icon-shade-6-1 {
+  background-position: -144px -24px;
+}
+
+.icon-shade-7-0 {
+  background-position: -168px 0px;
+}
+.icon-shade-7-1 {
+  background-position: -168px -24px;
+}
+
+.icon-shade-8-0 {
+  background-position: -192px 0px;
+}
+.icon-shade-8-1 {
+  background-position: -192px -24px;
+}
+
+
+.chest-tracker-box{
+  background: url('../img/chestBox.png') no-repeat;
+  width: 214px;
+  height: 214px;
+}
+
+#area-chest-tracker {
+  padding-top: 24px;
+  padding-left: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+#area-chest-tracker > div {
+  user-select: none;
+  padding-top: 5px;
+}
