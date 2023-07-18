@@ -1,5 +1,5 @@
 # cc-hundo-tracker
-A CrossCode mod tracker for 100% speedruns purposes.
+A CrossCode stat tracker for 100% speedruns purposes.
 
 Based on the [Item Spawner](https://github.com/CCDirectLink/CC-ItemSpawner/) implementation
 
