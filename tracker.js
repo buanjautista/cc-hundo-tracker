@@ -231,7 +231,7 @@ function setAreaChests(gameStats) {
 
             // Gets the current count of chests on each area. 
             // If area not defined it just sets value to 0
-            if (gameStats.collected[areaName.area]) {
+            if (gameStats.collected) {
                 gameStats.collected[areaName.area]
 
                 gameStats.collected[areaName.area] 
