@@ -18,8 +18,16 @@ var trackerWindow = {
         trackerWindow.window.getCompletion(getCompletionStats());
         return;
       }
-    
-      let getCompletionStats = function () {
+      
+      let setFixedGameInfo = function() { 
+        let info = {
+          areas: sc.map.areas, 
+          version: ig.game.getVersion()
+        }
+        return info;
+      }
+
+      let getCompletionStats = function() {
         let stats = {
           shades: [
             ig.vars.get("item.145.amount"),
@@ -32,8 +40,7 @@ var trackerWindow = {
             ig.vars.get("item.410.amount"),
             ig.vars.get("item.434.amount")],
           chests: {
-            collected: sc.stats.values.chests, 
-            areas: sc.map.areas, 
+            collected: sc.stats.values.chests,  
             total: sc.map.getTotalChestsFound(true)
           }, 
           quests: sc.quests.getTotalQuestsSolved(true),
@@ -58,6 +65,8 @@ var trackerWindow = {
             
             window.window.simplify = simplify;
             if (window){ 
+              window.window.getGameInfo(setFixedGameInfo()); // sends area info to the tracker.js gameAreas variable
+
               // need a way to stop registerUpdate() so it doesnt crash on window close, is that fireupdate?
               window.window.simplify.registerUpdate(() => window.window.getCompletion(getCompletionStats())); // sends completion rate updates to the tracker window
             }

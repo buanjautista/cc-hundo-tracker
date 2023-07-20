@@ -2,7 +2,7 @@
      "main": "mod.js",
      "name": "Hundo Tracker",
      "module": true,
-     "version": "0.0.2",
+     "version": "0.0.3",
      "description": "Tracker for All Bosses, Chests, Quests and Shades speedruns",
      "devDependencies": {
           "@types/jquery": "^3.3.14",

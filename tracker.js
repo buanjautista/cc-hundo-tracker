@@ -3,31 +3,12 @@ let chestCompletion;
 let bossCompletion;
 let shadeStats;
 
-const GAME_VERSION = {
-    0: "1.0.2+", 1: "1.0.3+", 2: "1.1.0+", 3:"1.4.0+"
-}
+let gameAreas;
+let currentGameVersion;
+let patchVersion;
 
-// at some point try to implement something that grabs game version and detects the extra bosses. cheap as hell but kinda works
-function getBossAmount(version) {
-    let totalBosses = 0
-    switch (version) {
-        case GAME_VERSION[0]:
-            totalBosses = 31
-            break
-        case GAME_VERSION[1]:
-            totalBosses = 32
-            break
-        case GAME_VERSION[2]:
-            totalBosses = 34
-            break
-        case GAME_VERSION[3]:
-            totalBosses = 38
-            break
-        default: 
-            totalBosses = 31
-            break 
-    }
-    return totalBosses
+const GAME_VERSION = {
+    0: "0.2", 1: "0.3", 2: "1.0", 3: "3.0", 4:"4.0"
 }
 
 const questBox = document.getElementById('tracker-info-quest')
@@ -101,8 +82,7 @@ function getCompletion(stats){
     Tracks the total kills then send the completion with that
 */
 function getCombatCompletion(gameStats){
-    let currentVersion = GAME_VERSION[0]
-    let totalBossAmount = getBossAmount(currentVersion)
+    let totalBossAmount = getBossAmount(getGamePatch()) // sets total boss number depending on patch
     let completionStat = "0"
 
     for (let bossAmount = 0; bossAmount < totalBossAmount; bossAmount++)
@@ -223,6 +203,15 @@ let areasWithChest = [
 let chestAreaValue = []
 let chestCount // storing this var so game doesnt crash on main menu, since unload save info, hopefully
 
+
+
+function getGameInfo(info) { 
+    // grabs some fixed info from game (total areas for chest comparison, and current version for boss count)
+    gameAreas = info.areas
+    currentGameVersion = info.version
+    patchVersion = currentGameVersion.slice(3, 6) // workaround to get patch version for boss count
+}
+
 function setAreaChests(gameStats) {
     if (gameStats) { // makes sure data is coming in
         for (i = 0; i < areasWithChest.length; i++ ){
@@ -243,7 +232,7 @@ function setAreaChests(gameStats) {
             }
             
             // Sends the data to the chest-info divs
-            let currentAreaTotalChests = gameStats.areas[areaName.area].chests
+            let currentAreaTotalChests = gameAreas[areaName.area].chests
             currentPageElement = document.getElementById(areaName.area)
 
             if (currentPageElement.innerText != chestAreaValue[i]){
@@ -252,4 +241,56 @@ function setAreaChests(gameStats) {
         }
     }
 }
+
+
+function getGamePatch() {
+    let version
+    if (Number(patchVersion) < 1.0) {
+        switch (patchVersion) {
+            case 0.3:
+                version = GAME_VERSION[1]
+                break
+            default:
+            case 0.2:
+                    version = GAME_VERSION[0]
+                    break
+        }
+    }
+    else if (Number(patchVersion) < 3.0) {
+        version = GAME_VERSION[2]
+    }
+    else if (Number(patchVersion) < 4.0) {
+        version = GAME_VERSION[3]
+    }
+    else if (Number(patchVersion) >= 4.0) {
+        version = GAME_VERSION[4]
+    }
+
+    return version
+}
+
+// tries to return how many bosses according to game patch
+function getBossAmount(version) {
+    let totalBosses = 0
+    switch (version) {
+        case GAME_VERSION[1]:
+            totalBosses = 32
+            break
+        case GAME_VERSION[2]:
+            totalBosses = 34
+            break
+        case GAME_VERSION[3]:
+            totalBosses = 35
+            break
+        case GAME_VERSION[4]:
+            totalBosses = 38
+            break
+        default:
+        case GAME_VERSION[0]:
+            totalBosses = 31
+            break
+    }
+    return totalBosses
+}
+
 
