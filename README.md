@@ -7,6 +7,12 @@ Based on the [Item Spawner](https://github.com/CCDirectLink/CC-ItemSpawner/) imp
 
 Press P while on game, and let the window run in the background.
 
+Currently shows: 
+- Bosses completion, based on current game version
+- Total chests obtained per area, and total chest completion
+- Shades obtained
+- Quests completed
+
 # Requirements:
 
 ## [CCLoader](https://github.com/CCDirectLink/CCLoader/releases)

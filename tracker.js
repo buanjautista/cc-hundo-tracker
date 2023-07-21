@@ -60,16 +60,16 @@ let bossCompletionNames = [
     "snow-megatank",
     "hedgehag-king"
 ]
-
-function getCompletion(stats){
-
+let stats
+function getCompletion(gameStats){
+    stats = gameStats
     bossCompletion = getCombatCompletion(stats.combat)
     setShadeCompletion(stats.shades)
     
     setAreaChests(stats.chests)
 
-    questCompletion = Math.floor((stats.quests * 10000)) *0.01
-    chestCompletion = Math.floor((stats.chests.total * 10000)) *0.01
+    questCompletion = (stats.quests * 100).toFixed(2)
+    chestCompletion = (stats.chests.total * 100).toFixed(2)
 
     bossBox.innerText = "Bosses: " + bossCompletion
     questBox.innerText = "Quests: " + questCompletion + "%"

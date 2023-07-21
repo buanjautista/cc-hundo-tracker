@@ -12,10 +12,13 @@ var trackerWindow = {
 {
   let initialize = function() {
 
+    let hundoTracker = activeMods.find(e => e.name == "Hundo Tracker")
+    let indexDirectory = hundoTracker.baseDirectory + "index.html"
+
     let openInterface = function() {
       if (trackerWindow.window) {
         trackerWindow.window.focus();
-        trackerWindow.window.getCompletion(getCompletionStats());
+        // trackerWindow.window.getCompletion(getCompletionStats());
         return;
       }
       
@@ -50,7 +53,7 @@ var trackerWindow = {
       }
 
       gui.Window.open(
-        'assets/mods/hundo-tracker/index.html',
+        indexDirectory,
         {
           position: 'center',
           width: 390,
