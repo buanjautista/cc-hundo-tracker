@@ -22,4 +22,4 @@ Any version around 2.21-22+ is known to be compatible with this mod.
 
 # Installation:
 
-Assuming you already installed CCLoader, download the latest release from https://github.com/buanjautista/cc-shock-quest/releases, and drop the .ccmod file into the /assets/mods/ folder inside the CrossCode directory.
+Assuming you already installed CCLoader, download the latest release from https://github.com/buanjautista/cc-shock-quest/releases, and drop the /cc-hundo-tracker/ folder into the /assets/mods/ folder inside the CrossCode directory.
