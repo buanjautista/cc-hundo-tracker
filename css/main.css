@@ -99,7 +99,7 @@ body {
 
 .shade-grid {
   margin-top:24px;
-  margin-left:15px;
+  /* margin-left:15px; */
   display:grid;
   grid-template-columns: repeat(3,32px);
   grid-template-rows: repeat(3,32px);
@@ -179,6 +179,55 @@ body {
   background-position: -192px -24px;
 }
 
+#keylock-tracker{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-top:24px;
+}
+
+.trackerbox-flex {
+  display:flex;
+  justify-content: center;
+
+  margin: 0px 24px;
+}
+
+
+.icon-keylock, .icon-chestlock {
+  background-image: url('../img/treasurekeys.png');
+  background-repeat: no-repeat;
+  background-size: 85px 23px;
+  width: 17px;
+  height: 23px;
+  /* position:relative; */
+}
+
+.icon-keylock {
+  position: absolute;
+  top: 0px;
+  z-index: 200;
+}
+
+.icon-chestlock{
+  position: relative;
+  z-index: 100;
+}
+.icon-keylock-0 {
+  background-position: -34px 0px;
+}
+.icon-keylock-1 {
+  background-position: -51px 0px;
+}
+.icon-keylock-2 {
+  background-position: -68px 0px;
+}
+.icon-chestlock-closed {
+  background-position: 0px 0px;
+}
+.icon-chestlock-open {
+  background-position: -17px 0px;
+}
 
 .chest-tracker-box{
   background: url('../img/chestBox.png') no-repeat;

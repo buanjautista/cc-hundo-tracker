@@ -12,6 +12,7 @@ Currently shows:
 - Total chests obtained per area, and total chest completion
 - Shades obtained
 - Quests completed
+- Chest key completion (bronze, silver, golden)
 
 # Requirements:
 

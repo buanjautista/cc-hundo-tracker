@@ -15,6 +15,7 @@ const questBox = document.getElementById('tracker-info-quest')
 const chestBox = document.getElementById('tracker-info-chest')
 const bossBox = document.getElementById('tracker-info-boss')
 const shadeBoxList = document.getElementsByClassName('shade-box')
+const keylockBox = document.getElementById('keylock-tracker')
 
 // Exits the tracker window with Escape
 document.addEventListener('keydown', (evt) => {
@@ -62,18 +63,21 @@ let bossCompletionNames = [
 ]
 let stats
 function getCompletion(gameStats){
-    stats = gameStats
-    bossCompletion = getCombatCompletion(stats.combat)
-    setShadeCompletion(stats.shades)
+    if (JSON.stringify(gameStats) != JSON.stringify(stats)) {
+        stats = gameStats
+        bossCompletion = getCombatCompletion(stats.combat)
+        setShadeCompletion(stats.shades)
+        
+        setKeylockCompletion(stats.keylocks)
     
-    setAreaChests(stats.chests)
-
-    questCompletion = (stats.quests * 100).toFixed(2)
-    chestCompletion = (stats.chests.total * 100).toFixed(2)
-
-    bossBox.innerText = "Bosses: " + bossCompletion
-    questBox.innerText = "Quests: " + questCompletion + "%"
-    chestBox.innerText = "Chests: " + chestCompletion + "%"
+        setAreaChests(stats.chests)
+    
+        questCompletion = (stats.quests * 100).toFixed(2)
+        chestCompletion = (stats.chests.total * 100).toFixed(2)
+        bossBox.innerText = "Bosses: " + bossCompletion
+        questBox.innerText = "Quests: " + questCompletion + "%"
+        chestBox.innerText = "Chests: " + chestCompletion + "%"
+    }
 }
 
 /* 
@@ -107,8 +111,6 @@ function getCombatCompletion(gameStats){
     In order, the shades: leaf, ice, sand, flame, seed, bolt, drop, star, meteor  
 */
 function setShadeCompletion(gameStats){
-    if (shadeStats != gameStats)
-    {
         shadeStats = gameStats
         
         for (let i = 0; i < gameStats.length; i++) {
@@ -122,8 +124,28 @@ function setShadeCompletion(gameStats){
                 shadeBoxList[i].children[0].classList.add(activatedShade)
             }
         }
-    }
+}
 
+/* Gets if you have Thief/White/Radiant key and sends it to the tracker */ 
+
+let currentKeylocks
+function setKeylockCompletion(gameStats){
+    // Send a data update only if the keylock array is different
+        currentKeylocks = gameStats
+
+        for (let i = 0; i < gameStats.length; i++) {
+            let closedChest = "icon-chestlock-closed"
+            let activatedChest = "icon-chestlock-open"
+            keylockBox.children[i].classList.remove(activatedChest)
+            keylockBox.children[i].classList.remove(closedChest)
+
+            if (gameStats[i]) {
+                keylockBox.children[i].classList.add(activatedChest)
+            }
+            else {
+                keylockBox.children[i].classList.add(closedChest)
+            }
+        }
 }
 
 let areasWithChest = [

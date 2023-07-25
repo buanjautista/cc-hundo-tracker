@@ -32,6 +32,11 @@ var trackerWindow = {
 
       let getCompletionStats = function() {
         let stats = {
+          keylocks: [
+            ig.vars.get("item.154.amount"),
+            ig.vars.get("item.155.amount"),
+            ig.vars.get("item.156.amount")
+          ],
           shades: [
             ig.vars.get("item.145.amount"),
             ig.vars.get("item.225.amount"),
