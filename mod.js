@@ -67,7 +67,7 @@ var trackerWindow = {
             window.window.trackerWindow = trackerWindow;
             
             window.window.simplify = simplify;
-            if (window){ 
+            if (window.window){ 
               window.window.getGameInfo(setFixedGameInfo()); // sends area info to the tracker.js gameAreas variable
 
               // need a way to stop registerUpdate() so it doesnt crash on window close, is that fireupdate?
@@ -94,8 +94,18 @@ var trackerWindow = {
 
 
 
+// Fixes the Skip Beginning option not tracking stats until save reload. Thanks EL
+sc.NewGamePlusModel.inject({
+  applyStoreData(b) {
+    this.parent(b);
+    if(this.active && this.options["rhombus-start"]) sc.stats.statsEnabled = true;
+  }
+})
+
+
+
+
 // In case need to add more variables for the tracker later on:
-// totalStory = ig.vars.get("plot.line") || 0;
 // totalEnemies = (b >= 32e3 ? 1 : b / 32e3) + sc.combat.getTotalEnemiesFound(true);
 // totalItems = sc.inventory.getTotalItemsUnlocked(true);
 // totalLore = sc.lore.getTotalLoreEntriesFound(true);
@@ -105,4 +115,5 @@ var trackerWindow = {
 // totalReports = sc.combat.getTotalEnemyReportsFound(true);
 // totalTrophies = sc.trophies.getTotalTrophiesUnlocked(true);
 // totalTraders = sc.trade.getTotalTradersFound(true);
+
 
