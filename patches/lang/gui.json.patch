@@ -1,0 +1,14 @@
+{
+	"labels": {
+		"options": {
+			"headers": {
+				"cc-hundo-tracker": "Hundo Tracker"
+			},
+
+			"show-full-tracker": {
+				"name": "Show Full Tracker",
+				"description": "Display the achievement extra stats in the tracker"
+			}
+		}
+	}
+}

@@ -23,6 +23,11 @@ document.addEventListener('keydown', (evt) => {
         window.close();
 });
 
+let fullStatTracking
+function setFullStatsCheck(enable){
+    enable ? fullStatTracking = true : fullStatTracking = false
+}
+
 let bossCompletionNames = [ 
     "boss-test",
     "turret-boss",
@@ -71,6 +76,10 @@ function getCompletion(gameStats){
         setKeylockCompletion(stats.keylocks)
     
         setAreaChests(stats.chests)
+
+        if (fullStatTracking) { // if extra stats option is toggled, track the stats in here
+            console.log('extra stats')
+        }
     
         questCompletion = (stats.quests * 100).toFixed(2)
         chestCompletion = (stats.chests.total * 100).toFixed(2)

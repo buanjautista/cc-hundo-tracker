@@ -8,11 +8,10 @@ Based on the [Item Spawner](https://github.com/CCDirectLink/CC-ItemSpawner/) imp
 Press P while on game, and let the window run in the background.
 
 Currently shows: 
-- Bosses completion, based on current game version
+- Main bosses completion, based on current game version
 - Total chests obtained per area, and total chest completion
 - Shades obtained
 - Quests completed
-- Chest key completion (bronze, silver, golden)
 
 # Requirements:
 
@@ -23,4 +22,4 @@ Any version around 2.21-22+ is known to be compatible with this mod.
 
 # Installation:
 
-Assuming you already installed CCLoader, download the latest release from https://github.com/buanjautista/cc-shock-quest/releases, and drop the /cc-hundo-tracker/ folder into the /assets/mods/ folder inside the CrossCode directory.
+Assuming you already installed CCLoader, download the latest release from https://github.com/buanjautista/cc-shock-quest/releases, and drop the .ccmod file into the /assets/mods/ folder inside the CrossCode directory.

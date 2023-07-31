@@ -2,13 +2,20 @@ if(!cc) {
   throw "CCLoader is required for this mod.";
 }
 
+sc.OPTIONS_DEFINITION["show-full-tracker"] = {
+	type: "CHECKBOX",
+	init: false,
+	cat: sc.OPTION_CATEGORY.INTERFACE,
+	hasDivider: true,
+	header: "cc-hundo-tracker",
+};
+
 let gui = require('nw.gui');
 
 var trackerWindow = {
   // Spawner Window handler
   window: null
 };
-
 {
   let initialize = function() {
 
@@ -16,6 +23,9 @@ var trackerWindow = {
     let indexDirectory = hundoTracker.baseDirectory + "index.html"
 
     let openInterface = function() {
+      let windowHeight = 0
+      sc.options.get("show-full-tracker") ? windowHeight = 420 : windowHeight = 210 // Expand window if full tracker is enabled
+
       if (trackerWindow.window) {
         trackerWindow.window.focus();
         // trackerWindow.window.getCompletion(getCompletionStats());
@@ -62,7 +72,7 @@ var trackerWindow = {
         {
           position: 'center',
           width: 390,
-          height: 210,
+          height: windowHeight,
           resizable: false
         },
         (window) => {
@@ -73,6 +83,7 @@ var trackerWindow = {
             
             window.window.simplify = simplify;
             if (window.window){ 
+              window.window.setFullStatsCheck(sc.options.get("show-full-tracker")) // Toggle to set the tracker, to check extra stats for achievements and etc
               window.window.getGameInfo(setFixedGameInfo()); // sends area info to the tracker.js gameAreas variable
 
               // need a way to stop registerUpdate() so it doesnt crash on window close, is that fireupdate?
@@ -81,6 +92,7 @@ var trackerWindow = {
           });
 
           window.on('closed', () => {
+            trackerWindow.window.simplify = null // hopefully stops register update
             trackerWindow.window = null;
           });
         }

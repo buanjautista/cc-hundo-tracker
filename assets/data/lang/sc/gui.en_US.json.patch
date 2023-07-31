@@ -1,0 +1,4 @@
+[{
+	"type": "INCLUDE",
+	"src": "mod:patches/lang/gui.json.patch"
+}]
