@@ -78,7 +78,7 @@ function getCompletion(gameStats){
         setAreaChests(stats.chests)
 
         if (fullStatTracking) { // if extra stats option is toggled, track the stats in here
-            console.log('extra stats')
+            setAchievementStats(stats.combat, stats.playerstats)
         }
     
         questCompletion = (stats.quests * 100).toFixed(2)
@@ -87,6 +87,53 @@ function getCompletion(gameStats){
         questBox.innerText = "Quests: " + questCompletion + "%"
         chestBox.innerText = "Chests: " + chestCompletion + "%"
     }
+}
+
+// Track the extra achievement stats for full 100% purposes
+const statTracker = document.getElementById("stat-tracker")
+function setAchievementStats(combatStats, playerStats){
+    let gameStats = {
+        steps: playerStats.steps,
+        throws: playerStats.throws,
+        dashes: playerStats.dash,
+        jumps: playerStats.jumps,
+        pdash: playerStats.perfectDash,
+        onehitko: combatStats.oneHitKills,
+        shield: combatStats.shieldedHits,
+        pguard: combatStats.perfectShield,
+        heals: combatStats.healed,
+        combatarts: combatStats.specials,
+        maxdamageonehit: combatStats.maxDamage,
+        totaldamage: combatStats.damageGiven,
+        crits: combatStats.critHits,
+        environment: combatStats.enviroKills,
+        survivelow: combatStats.lowHealthWins
+    }
+    statTracker.innerText = `Total Steps: ${gameStats.steps} / ${maxStat.steps} \n
+    Total Dashes: ${gameStats.dashes} / ${maxStat.dashes} \n
+    Total Jumps: ${gameStats.jumps} / ${maxStat.jumps} \n
+    Total Perfect Dashes: ${gameStats.pdash} / ${maxStat.pdash} \n
+    `
+}
+const maxStat = {
+    steps:50000,
+    dashes: 20000,
+    jumps:1000,
+    pdash:100,
+    onehitko: 500,
+    shield:4000,
+    pguard:200,
+    counter:200,
+    throws:50000,
+    melee:50000,
+    heals:400000,
+    combatarts:1000,
+    maxdamageonehit:50000,
+    damage:1000000,
+    kills:8000,
+    crits:20000,
+    environment:100,
+    survivelow:50
 }
 
 /* 

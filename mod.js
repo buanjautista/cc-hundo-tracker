@@ -62,7 +62,8 @@ var trackerWindow = {
             total: sc.map.getTotalChestsFound(true)
           }, 
           quests: sc.quests.getTotalQuestsSolved(true),
-          combat: sc.stats.values.combat
+          combat: sc.stats.values.combat,
+          playerstats: sc.stats.values.player
         }
         return stats;
       }

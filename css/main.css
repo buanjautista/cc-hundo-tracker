@@ -29,7 +29,11 @@ body {
   height: 214px;
 }
 
-.main-tracker-box {
+.second-container {
+  top:224px;
+}
+
+.main-tracker-box, .extra-tracker-box {
   background: url('../img/tracker.png') no-repeat;
   width: 172px;
   height: 214px;
@@ -247,4 +251,22 @@ body {
 #area-chest-tracker > div {
   user-select: none;
   padding-top: 5px;
+}
+
+.extra-tracker-box {
+  width: 390px;
+  background: url('../img/achievements.png') no-repeat;
+}
+
+#stat-tracker{
+  margin-top: 24px;
+  margin-left: 12px;
+  display:grid;
+  grid-template-columns: repeat(4, 2fr);
+  grid-template-rows: repeat(4, 2fr);
+  color: white;
+  font-family: 'PixelHallfeticaJP12P-Bold';
+  font-size: 12px;
+  width:376px;
+  text-transform: uppercase;
 }
