@@ -77,9 +77,7 @@ function getCompletion(gameStats){
     
         setAreaChests(stats.chests)
 
-        if (fullStatTracking) { // if extra stats option is toggled, track the stats in here
-            setAchievementStats(stats.combat, stats.playerstats)
-        }
+        setAchievementStats(stats.combat, stats.playerstats)
     
         questCompletion = (stats.quests * 100).toFixed(2)
         chestCompletion = (stats.chests.total * 100).toFixed(2)
@@ -89,51 +87,82 @@ function getCompletion(gameStats){
     }
 }
 
+let achievementStats = {
+    steps: 0,
+    dashes: 0,
+    jumps: 0,
+    pdash: 0,
+    onehitko: 0,
+    shield: 0,
+    pguard: 0,
+    counter: 0,
+    throws: 0,
+    melee: 0,
+    heals: 0,
+    combatarts: 0,
+    maxdamageonehit: 0,
+    totaldamage: 0,
+    kills: 0,
+    crits: 0,
+    environment: 0,
+    survivelow: 0
+}
+
 // Track the extra achievement stats for full 100% purposes
 const statTracker = document.getElementById("stat-tracker")
 function setAchievementStats(combatStats, playerStats){
-    let gameStats = {
-        steps: playerStats.steps,
-        throws: playerStats.throws,
-        dashes: playerStats.dash,
-        jumps: playerStats.jumps,
-        pdash: playerStats.perfectDash,
-        onehitko: combatStats.oneHitKills,
-        shield: combatStats.shieldedHits,
-        pguard: combatStats.perfectShield,
-        heals: combatStats.healed,
-        combatarts: combatStats.specials,
-        maxdamageonehit: combatStats.maxDamage,
-        totaldamage: combatStats.damageGiven,
-        crits: combatStats.critHits,
-        environment: combatStats.enviroKills,
-        survivelow: combatStats.lowHealthWins
+    if (combatStats && playerStats) {
+        achievementStats = {
+            steps: playerStats.steps,
+            dashes: playerStats.dash,
+            jumps: playerStats.jumps,
+            pdash: playerStats.perfectDash,
+            onehitko: combatStats.oneHitKills,
+            shield: combatStats.shieldedHits,
+            pguard: combatStats.perfectShield,
+            counter: combatStats.guardCounters,
+            throws: playerStats.throws,
+            melee: playerStats.closeHits,
+            heals: combatStats.healed,
+            combatarts: combatStats.specials,
+            maxdamageonehit: combatStats.maxDamage,
+            totaldamage: Math.floor((combatStats.damageGiven / 1000)),
+            kills: combatStats.totalKilled,
+            crits: combatStats.critHits,
+            environment: combatStats.enviroKills,
+            survivelow: combatStats.lowHealthWins
+        }
     }
-    statTracker.innerText = `Total Steps: ${gameStats.steps} / ${maxStat.steps} \n
-    Total Dashes: ${gameStats.dashes} / ${maxStat.dashes} \n
-    Total Jumps: ${gameStats.jumps} / ${maxStat.jumps} \n
-    Total Perfect Dashes: ${gameStats.pdash} / ${maxStat.pdash} \n
-    `
+    if (fullStatTracking) {
+        for (i = 0; i < Object.keys(achievementStats).length; i++) {
+            if (Object.values(achievementStats)[i]) {
+                statTracker.children[i].innerText = `${Object.values(maxAchievementStat)[i].name}: \n${Object.values(achievementStats)[i]} / ${Object.values(maxAchievementStat)[i].value}`
+            }
+            else {
+                statTracker.children[i].innerText = `${Object.values(maxAchievementStat)[i].name}: \n0 / ${Object.values(maxAchievementStat)[i].value}`
+            }
+        }
+    }
 }
-const maxStat = {
-    steps:50000,
-    dashes: 20000,
-    jumps:1000,
-    pdash:100,
-    onehitko: 500,
-    shield:4000,
-    pguard:200,
-    counter:200,
-    throws:50000,
-    melee:50000,
-    heals:400000,
-    combatarts:1000,
-    maxdamageonehit:50000,
-    damage:1000000,
-    kills:8000,
-    crits:20000,
-    environment:100,
-    survivelow:50
+const maxAchievementStat = {
+    steps: {name: "Steps", value: "50k" },
+    dashes: { name: "Dashes", value: "20k" },
+    jumps:{ name: "Jumps", value: 1000 },
+    pdash:{ name: "Perfect Dodges", value: 100 },
+    onehitko: { name: "OHKO", value: 500 },
+    shield:{ name: "Guards", value: 4000 },
+    pguard:{ name: "Perfect Guards", value: 200 },
+    counter:{ name: "Counters", value: 200 },
+    throws:{ name: "BALLS", value: "50k" },
+    melee:{ name: "Melee Hits", value: "50k" },
+    heals:{ name: "Healing", value: "400k" },
+    combatarts:{ name: "Combat Arts", value: 1000 },
+    maxdamageonehit:{ name: "One Hit Damage", value: "50k" },
+    damage:{ name: "Damage", value: "1m" },
+    kills:{ name: "Kills", value: 8000 },
+    crits:{ name: "Crits", value: "20k" },
+    environment:{ name: "Environmental Kills", value: 100 },
+    survivelow:{ name: "Low Health Kills", value: 50 }
 }
 
 /* 
