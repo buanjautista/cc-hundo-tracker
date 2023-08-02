@@ -77,13 +77,15 @@ function getCompletion(gameStats){
     
         setAreaChests(stats.chests)
 
-        setAchievementStats(stats.combat, stats.playerstats)
-    
+        
         questCompletion = (stats.quests * 100).toFixed(2)
         chestCompletion = (stats.chests.total * 100).toFixed(2)
         bossBox.innerText = "Bosses: " + bossCompletion
         questBox.innerText = "Quests: " + questCompletion + "%"
         chestBox.innerText = "Chests: " + chestCompletion + "%"
+    }
+    if (fullStatTracking) {
+        setAchievementStats(stats.combat, stats.playerstats)
     }
 }
 
